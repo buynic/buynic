@@ -170,5 +170,47 @@ export const emailTemplates = {
             </div>
         </div>
         `
+  },
+
+  /**
+   * EMAIL 4: ORDER DELIVERED
+   */
+  orderDelivered: (customerName: string, orderId: string, products: { name: string, image_url: string, id: string }[]) => {
+    const productList = products.map(p => `
+        <div style="display: flex; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+            <img src="${p.image_url}" alt="${p.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px; margin-right: 15px;">
+            <div>
+            <h4 style="margin: 0 0 5px 0; color: #333;">${p.name}</h4>
+         </div>
+        </div>
+        `).join('')
+
+    return `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px;">
+        <div style="background-color: #27ae60; padding: 20px; border-radius: 8px 8px 0 0; text-align: center;">
+          <h2 style="color: #ffffff; margin: 0;">Order Delivered! 📦</h2>
+        </div>
+        
+        <div style="padding: 30px;">
+          <h3 style="color: #333; margin-top: 0;">Hi ${customerName},</h3>
+          <p style="color: #555; line-height: 1.6;">
+            We are happy to inform you that your order <strong>#${orderId}</strong> has been successfully delivered.
+          </p>
+          <p style="color: #555; line-height: 1.6;">
+            We hope you enjoy your purchase! Thank you for shopping with us.
+          </p>
+
+          <div style="background-color: #f9f9f9; border-radius: 8px; padding: 20px; margin: 25px 0;">
+            <h4 style="margin-top: 0; color: #555; border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 15px;">Delivered Items</h4>
+            ${productList}
+          </div>
+
+          <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+            <p style="color: #333; font-weight: bold; margin: 0;">Team Buynic</p>
+            <p style="color: #777; font-size: 14px; margin: 5px 0 0 0;"><a href="https://buynic.shop" style="color: #3498db; text-decoration: none;">www.buynic.shop</a></p>
+          </div>
+        </div>
+      </div>
+    `
   }
 }
