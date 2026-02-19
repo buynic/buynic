@@ -62,8 +62,9 @@ export async function middleware(request: NextRequest) {
     if (request.nextUrl.pathname.startsWith('/admin')) {
         // 1. Check if user is logged in
         if (!user) {
-            return NextResponse.redirect(new URL('/login', request.url)) // Or redirect to home '/' as per user request, but login seems appropriate if not logged in.
-            // User requested: If not logged in -> redirect to /login.
+            // Allow proceeding to /admin so the client-side component can handle the OAuth login flow.
+            // Previously this redirected to /login which returned 404.
+            return response
         }
 
         // 2. Check if user is admin
