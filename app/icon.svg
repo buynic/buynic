@@ -1,0 +1,17 @@
+<svg width="32" height="32" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="120" fill="#1A1A1A"/>
+  <!-- Bag Body -->
+  <path d="M140 180H372V390C372 417.614 349.614 440 322 440H190C162.386 440 140 417.614 140 390V180Z" stroke="white" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Handle -->
+  <path d="M190 180V140C190 106.863 216.863 80 250 80C283.137 80 310 106.863 310 140V180" stroke="white" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Face -->
+  <!-- Left Eye (Open) -->
+  <circle cx="215" cy="270" r="16" fill="white"/>
+  
+  <!-- Right Eye (Wink) -->
+  <path d="M285 270 C 285 270, 305 245, 325 270" stroke="white" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  
+  <!-- Mouth (Smile) -->
+  <path d="M220 330 Q 256 365 292 330" stroke="white" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
