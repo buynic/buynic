@@ -10,9 +10,37 @@ const inter = Inter({
   variable: '--font-inter'
 })
 
+import { Analytics } from "@vercel/analytics/react"
+
 export const metadata = {
-  title: 'Buynic - Online Shopping Experience',
-  description: 'Discover curated premium essentials for your lifestyle.',
+  title: {
+    template: '%s | Buynic',
+    default: 'Buynic - Premium Online Shopping',
+  },
+  description: 'Discover curated premium essentials for your lifestyle at Buynic. Shop top-quality electronics, fashion, and home goods.',
+  openGraph: {
+    type: 'website',
+    locale: 'en_IN',
+    url: 'https://buynic.shop',
+    siteName: 'Buynic',
+    images: [
+      {
+        url: '/og-image.jpg', // Ensure this exists or fallback
+        width: 1200,
+        height: 630,
+        alt: 'Buynic - Premium Online Shopping',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@buynic',
+    creator: '@buynic',
+  },
+  metadataBase: new URL('https://buynic.shop'),
+  alternates: {
+    canonical: '/',
+  },
 }
 
 export default function RootLayout({
@@ -32,6 +60,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <Toaster />
+        <Analytics />
       </body>
     </html>
   )
