@@ -67,7 +67,7 @@ export default function OrdersPage() {
     if (order.status === 'pending') {
       setDeleteConfirmation({ isOpen: true, order })
     } else {
-      toast.error("Cannot delete this order", {
+      toast.error("Cannot cancel this order", {
         description: "Please request cancellation with the delivery partner."
       })
     }
@@ -76,12 +76,12 @@ export default function OrdersPage() {
   const confirmDeleteOrder = async () => {
     if (!deleteConfirmation.order) return
 
-    const { error } = await supabase.from('orders').delete().eq('id', deleteConfirmation.order.id)
+    const { error } = await supabase.from('orders').update({ status: 'cancelled' }).eq('id', deleteConfirmation.order.id)
 
     if (error) {
-      toast.error("Failed to delete order", { description: error.message })
+      toast.error("Failed to cancel order", { description: error.message })
     } else {
-      toast.success("Order deleted successfully")
+      toast.success("Order cancelled successfully")
       if (user) fetchOrders(user.id)
     }
     setDeleteConfirmation({ isOpen: false, order: null })
@@ -261,7 +261,14 @@ export default function OrdersPage() {
                         <div className="flex justify-between items-start">
                           <div>
                             <h3 className="text-lg font-semibold text-gray-900">{order.products?.name}</h3>
-                            <p className="text-sm text-gray-500 mt-1">Ordered on {new Date(order.created_at).toLocaleDateString()}</p>
+                            <div className="flex flex-col mt-1">
+                              <p className="text-sm text-gray-500">Ordered on {new Date(order.created_at).toLocaleDateString()}</p>
+                              {(order.status === 'ordered' || order.status === 'shipped') && (
+                                <p className="text-sm font-medium text-emerald-600 mt-1">
+                                  Expected delivery: on or before {new Date(new Date(order.created_at).getTime() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString()}
+                                </p>
+                              )}
+                            </div>
                           </div>
 
                           {/* Price & Delete Action */}

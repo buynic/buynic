@@ -246,9 +246,9 @@ export function CheckoutModal({ isOpen, onClose, product, quantity, onSuccess }:
         }
 
         // Calculate costs
-        const itemTotal = product.sale_price * quantity
+        const itemTotal = Number((product.sale_price * quantity).toFixed(2))
         const deliveryFee = itemTotal > 199 ? 0 : 29
-        const grandTotal = itemTotal + deliveryFee
+        const grandTotal = Number((itemTotal + deliveryFee).toFixed(2))
 
         const { data, error } = await supabase
             .from('orders')
@@ -312,9 +312,9 @@ export function CheckoutModal({ isOpen, onClose, product, quantity, onSuccess }:
     ]
 
     // Calculate for render
-    const itemTotal = product.sale_price * quantity
+    const itemTotal = Number((product.sale_price * quantity).toFixed(2))
     const deliveryFee = itemTotal > 199 ? 0 : 29
-    const grandTotal = itemTotal + deliveryFee
+    const grandTotal = Number((itemTotal + deliveryFee).toFixed(2))
 
     return (
         <Modal isOpen={isOpen} onClose={onClose} title={step === 1 ? "Select Delivery Address" : "Order Summary & Payment"}>

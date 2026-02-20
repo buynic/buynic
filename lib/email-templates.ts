@@ -105,6 +105,8 @@ export const emailTemplates = {
           </p>
           <p style="color: #555; line-height: 1.6;">
             Our team has started processing your items for delivery. You can track the status in your orders page.
+            <br/><br/>
+            <strong>Expected Delivery:</strong> on or before ${new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString()}
           </p>
 
           <div style="background-color: #f9f9f9; border-radius: 8px; padding: 20px; margin: 25px 0;">
