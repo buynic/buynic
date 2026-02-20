@@ -12,49 +12,49 @@ When using Buynic, we may collect the following information:
 a) Account Information
 
 When signing in using Google authentication:
-- Name
-- Email address
-- Profile image (if provided by Google)
+• Name
+• Email address
+• Profile image (if provided by Google)
 
 We do not access your Google password or private Google data.
 
 b) Order & Delivery Information
 
 When placing an order:
-- Full name
-- Mobile number
-- Delivery address
-- Order details and purchase history
+• Full name
+• Mobile number
+• Delivery address
+• Order details and purchase history
 
 This information is required solely for order fulfillment.
 
 c) Usage Information
 
 We may automatically collect:
-- Device type
-- Browser type
-- Pages visited
-- Interaction data
+• Device type
+• Browser type
+• Pages visited
+• Interaction data
 
 This helps improve website performance and user experience.
 
 2. How We Use Your Information
 
 Your information is used only to:
-- Process and manage orders
-- Arrange product delivery through suppliers/logistics partners
-- Provide customer support
-- Improve platform performance
-- Prevent fraud or misuse
+• Process and manage orders
+• Arrange product delivery through suppliers/logistics partners
+• Provide customer support
+• Improve platform performance
+• Prevent fraud or misuse
 
 We do NOT sell or rent your personal data.
 
 3. Data Sharing
 
 We may share limited information only when necessary:
-- Delivery partners and suppliers (for shipping orders)
-- Payment handling during Cash on Delivery processing
-- Legal authorities if required by law
+• Delivery partners and suppliers (for shipping orders)
+• Payment handling during Cash on Delivery processing
+• Legal authorities if required by law
 
 Only required information is shared.
 
@@ -66,18 +66,18 @@ We do not store passwords directly on our servers.
 5. Cookies & Tracking
 
 We may use cookies or similar technologies to:
-- Maintain login sessions
-- Improve browsing experience
-- Analyze site usage
+• Maintain login sessions
+• Improve browsing experience
+• Analyze site usage
 
 You can disable cookies via browser settings.
 
 6. Data Retention
 
 We retain order and account data only as long as necessary for:
-- Order history
-- Customer support
-- Legal or operational purposes
+• Order history
+• Customer support
+• Legal or operational purposes
 
 You may request account data removal by contacting us.
 
@@ -102,7 +102,7 @@ We may update this policy periodically. Continued use of Buynic means acceptance
 11. Contact
 
 For privacy concerns:
-📧 buynic.shop@gmail.com
+buynic.shop@gmail.com
 `
 
 export const TERMS_OF_SERVICE = `
@@ -117,9 +117,9 @@ By accessing or using buynic.shop, you agree to the following terms.
 Buynic operates as an online product discovery and ordering platform.
 
 Buynic:
-- Sources products from third-party suppliers and vendors
-- Facilitates customer orders
-- Arrange delivery through logistics partners
+• Sources products from third-party suppliers and vendors
+• Facilitates customer orders
+• Arrange delivery through logistics partners
 
 Buynic is not the manufacturer of listed products.
 
@@ -129,17 +129,17 @@ Buynic is not the manufacturer of listed products.
 
 We attempt to display accurate product descriptions and images.
 However:
-- Colors, sizes, or appearance may vary slightly.
-- Product availability may change without notice.
+• Colors, sizes, or appearance may vary slightly.
+• Product availability may change without notice.
 
 3. Order Acceptance
 
 Orders placed are considered order requests, not guaranteed confirmations.
 
 We reserve the right to:
-- Cancel suspicious or invalid orders
-- Cancel orders due to supplier unavailability
-- Cancel incorrect pricing or listing errors
+• Cancel suspicious or invalid orders
+• Cancel orders due to supplier unavailability
+• Cancel incorrect pricing or listing errors
 
 Customers will be informed if cancellation occurs.
 
@@ -148,8 +148,8 @@ Customers will be informed if cancellation occurs.
 Most orders are fulfilled using Cash on Delivery (COD).
 
 Customers agree to:
-- Provide correct contact details
-- Be available to receive deliveries
+• Provide correct contact details
+• Be available to receive deliveries
 
 Repeated refusal of COD orders may result in account restrictions.
 
@@ -158,9 +158,9 @@ Repeated refusal of COD orders may result in account restrictions.
 5. Delivery
 
 Delivery timelines are estimates and may vary based on:
-- Supplier processing
-- Logistics delays
-- Location accessibility
+• Supplier processing
+• Logistics delays
+• Location accessibility
 
 Buynic is not responsible for delays caused by third-party logistics providers.
 
@@ -169,9 +169,9 @@ Buynic is not responsible for delays caused by third-party logistics providers.
 Returns are available only for eligible products and within 7 days of delivery.
 
 Returns may be rejected if:
-- Product is used or damaged by customer
-- Original packaging is missing
-- Return request exceeds allowed time
+• Product is used or damaged by customer
+• Original packaging is missing
+• Return request exceeds allowed time
 
 Refund or replacement decisions depend on supplier policies.
 
@@ -180,25 +180,25 @@ Refund or replacement decisions depend on supplier policies.
 Users may submit ratings and reviews only after verified purchases.
 
 Buynic reserves the right to remove:
-- Spam reviews
-- Offensive content
-- Misleading information
+• Spam reviews
+• Offensive content
+• Misleading information
 
 8. Account Usage
 
 Users agree not to:
-- Provide false information
-- Abuse ordering systems
-- Attempt fraud or misuse
+• Provide false information
+• Abuse ordering systems
+• Attempt fraud or misuse
 
 Violation may result in account suspension.
 
 9. Limitation of Liability
 
 Buynic shall not be liable for:
-- Indirect or incidental damages
-- Supplier manufacturing defects
-- Delivery partner issues beyond reasonable control
+• Indirect or incidental damages
+• Supplier manufacturing defects
+• Delivery partner issues beyond reasonable control
 
 Our responsibility is limited to facilitating the order process.
 
@@ -216,5 +216,5 @@ These terms are governed under the laws of India.
 
 13. Contact
 
-📧 buynic.shop@gmail.com
+buynic.shop@gmail.com
 `

@@ -18,7 +18,7 @@ export default function PrivacyPolicyPage() {
                     <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-8 pb-6 border-b border-border">
                         Privacy Policy
                     </h1>
-                    <div className="prose prose-slate dark:prose-invert max-w-none text-muted-foreground whitespace-pre-wrap leading-relaxed">
+                    <div className="prose prose-slate dark:prose-invert max-w-none text-muted-foreground whitespace-pre-wrap leading-relaxed text-justify">
                         {PRIVACY_POLICY}
                     </div>
                 </div>
