@@ -50,25 +50,25 @@ export default function ContactPage() {
     }
 
     return (
-        <div className="bg-white py-24 sm:py-32">
+        <div className="bg-background py-24 sm:py-32">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl lg:mx-0">
-                    <h2 className="text-3xl font-bold tracking-tight text-gray-900">Contact Us</h2>
-                    <p className="mt-2 text-lg leading-8 text-gray-600">
+                    <h2 className="text-3xl font-bold tracking-tight text-foreground">Contact Us</h2>
+                    <p className="mt-2 text-lg leading-8 text-muted-foreground">
                         Have a question or feedback? We'd love to hear from you.
                     </p>
                 </div>
 
                 <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 text-base leading-7 sm:grid-cols-2 sm:gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-4">
                     <div>
-                        <h3 className="border-l border-primary pl-6 font-semibold text-gray-900">General Inquiries</h3>
-                        <address className="border-l border-gray-200 pl-6 pt-2 not-italic text-gray-600">
+                        <h3 className="border-l border-primary pl-6 font-semibold text-foreground">General Inquiries</h3>
+                        <address className="border-l border-border pl-6 pt-2 not-italic text-muted-foreground">
                             <p>buynic.shop@gmail.com</p>
                         </address>
                     </div>
                     <div>
-                        <h3 className="border-l border-primary pl-6 font-semibold text-gray-900">Support</h3>
-                        <address className="border-l border-gray-200 pl-6 pt-2 not-italic text-gray-600">
+                        <h3 className="border-l border-primary pl-6 font-semibold text-foreground">Support</h3>
+                        <address className="border-l border-border pl-6 pt-2 not-italic text-muted-foreground">
                             <p>buynic.shop@gmail.com</p>
                             <a href="https://www.instagram.com/buynic.shop/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors block mt-1">
                                 DM @buynic.shop
@@ -80,11 +80,11 @@ export default function ContactPage() {
                     </div>
                 </div>
 
-                <div className="mt-16 bg-slate-50 rounded-2xl p-8 sm:p-12">
+                <div className="mt-16 bg-card border border-border rounded-2xl p-8 sm:p-12">
                     <form onSubmit={handleContactSubmit} className="max-w-xl mx-auto space-y-6">
                         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                             <div>
-                                <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-gray-900">First name</label>
+                                <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-foreground">First name</label>
                                 <div className="mt-2.5">
                                     <Input
                                         type="text"
@@ -97,7 +97,7 @@ export default function ContactPage() {
                                 </div>
                             </div>
                             <div>
-                                <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">Last name</label>
+                                <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-foreground">Last name</label>
                                 <div className="mt-2.5">
                                     <Input
                                         type="text"
@@ -111,7 +111,7 @@ export default function ContactPage() {
                             </div>
                         </div>
                         <div>
-                            <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900">Email</label>
+                            <label htmlFor="email" className="block text-sm font-semibold leading-6 text-foreground">Email</label>
                             <div className="mt-2.5">
                                 <Input
                                     type="email"
@@ -124,7 +124,7 @@ export default function ContactPage() {
                             </div>
                         </div>
                         <div>
-                            <label htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900">Message</label>
+                            <label htmlFor="message" className="block text-sm font-semibold leading-6 text-foreground">Message</label>
                             <div className="mt-2.5">
                                 <textarea
                                     className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"

@@ -2,7 +2,7 @@ import { CheckCircle2 } from "lucide-react"
 
 export default function AboutPage() {
     return (
-        <div className="bg-white">
+        <div className="bg-background">
             <div className="relative isolate overflow-hidden bg-slate-50 py-24 sm:py-32">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
                     <div className="mx-auto max-w-2xl lg:mx-0">
