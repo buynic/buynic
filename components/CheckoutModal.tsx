@@ -326,20 +326,20 @@ export function CheckoutModal({ isOpen, onClose, product, quantity, onSuccess }:
                         {/* Saved Addresses List */}
                         {!showAddressForm && addresses.length > 0 && (
                             <div className="space-y-3">
-                                <h3 className="text-sm font-semibold text-gray-900">Saved Addresses</h3>
+                                <h3 className="text-sm font-semibold text-foreground">Saved Addresses</h3>
                                 <div className="grid gap-3">
                                     {addresses.map((addr) => (
                                         <div
                                             key={addr.id}
-                                            className={`p-4 rounded-lg border cursor-pointer transition-all ${selectedAddressId === addr.id ? 'border-primary bg-primary/5 ring-1 ring-primary' : 'border-gray-200 hover:border-gray-300'}`}
+                                            className={`p-4 rounded-lg border cursor-pointer transition-all ${selectedAddressId === addr.id ? 'border-primary bg-primary/5 ring-1 ring-primary' : 'border-border hover:border-gray-400 dark:hover:border-gray-600'}`}
                                             onClick={() => handleSelectAddress(addr)}
                                         >
                                             <div className="flex justify-between items-start">
                                                 <div>
-                                                    <p className="font-medium text-gray-900">{addr.name}</p>
-                                                    <p className="text-sm text-gray-500 mt-1">{addr.address}</p>
-                                                    <p className="text-sm text-gray-500">{addr.city}, {addr.state} - {addr.pincode}</p>
-                                                    <p className="text-sm text-gray-500 mt-1">Phone: {addr.phone}</p>
+                                                    <p className="font-medium text-foreground">{addr.name}</p>
+                                                    <p className="text-sm text-muted-foreground mt-1">{addr.address}</p>
+                                                    <p className="text-sm text-muted-foreground">{addr.city}, {addr.state} - {addr.pincode}</p>
+                                                    <p className="text-sm text-muted-foreground mt-1">Phone: {addr.phone}</p>
                                                 </div>
                                                 {selectedAddressId === addr.id && <div className="h-4 w-4 rounded-full bg-primary" />}
                                             </div>
@@ -356,14 +356,14 @@ export function CheckoutModal({ isOpen, onClose, product, quantity, onSuccess }:
                         {(showAddressForm || addresses.length === 0) && (
                             <form onSubmit={(e) => { e.preventDefault(); handlePlaceOrder(); }} className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-300">
                                 {addresses.length > 0 && (
-                                    <Button type="button" variant="ghost" className="mb-2 pl-0 text-gray-500 hover:text-gray-900" onClick={() => setShowAddressForm(false)}>
+                                    <Button type="button" variant="ghost" className="mb-2 pl-0 text-muted-foreground hover:text-foreground" onClick={() => setShowAddressForm(false)}>
                                         ← Back to Saved Addresses
                                     </Button>
                                 )}
 
                                 <div className="space-y-4">
                                     <div className="flex justify-between items-center">
-                                        <h3 className="text-sm font-semibold flex items-center gap-2 text-gray-900">
+                                        <h3 className="text-sm font-semibold flex items-center gap-2 text-foreground">
                                             <MapPin className="h-4 w-4 text-primary" /> New Address
                                         </h3>
                                         <Button type="button" variant="outline" size="sm" onClick={handleUseLocation} disabled={locationLoading} className="text-primary border-primary hover:bg-primary/5 h-8">
@@ -386,12 +386,12 @@ export function CheckoutModal({ isOpen, onClose, product, quantity, onSuccess }:
                                     <Input placeholder="Pincode" required value={formData.pincode} onChange={e => setFormData({ ...formData, pincode: e.target.value })} />
                                 </div>
 
-                                <div className="space-y-4 pt-4 border-t border-gray-100">
-                                    <h3 className="text-sm font-semibold flex items-center gap-2 text-gray-900">
+                                <div className="space-y-4 pt-4 border-t border-border">
+                                    <h3 className="text-sm font-semibold flex items-center gap-2 text-foreground">
                                         <Phone className="h-4 w-4 text-primary" /> Contact Details
                                     </h3>
                                     <div className="grid grid-cols-1 gap-4">
-                                        <Input placeholder="Name" required value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} icon={<User className="h-4 w-4 text-gray-400" />} />
+                                        <Input placeholder="Name" required value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} icon={<User className="h-4 w-4 text-muted-foreground" />} />
                                         <div className="space-y-1">
                                             <Input placeholder="Phone Number (10 digits)" required type="tel" maxLength={10} value={formData.phone} onChange={e => { const val = e.target.value.replace(/\D/g, ''); setFormData({ ...formData, phone: val }) }} />
                                             <p className="text-xs text-muted-foreground text-right">{formData.phone.length}/10</p>
@@ -421,7 +421,7 @@ export function CheckoutModal({ isOpen, onClose, product, quantity, onSuccess }:
 
                         {/* Continue Button for Selected Address (Step 1) */}
                         {!showAddressForm && selectedAddressId && (
-                            <div className="pt-6 mt-4 border-t border-gray-100">
+                            <div className="pt-6 mt-4 border-t border-border">
                                 <Button className="w-full h-12 text-lg" onClick={handleContinueToPayment}>
                                     Deliver Here
                                 </Button>
@@ -433,30 +433,30 @@ export function CheckoutModal({ isOpen, onClose, product, quantity, onSuccess }:
                 {/* STEP 2: SUMMARY & PAYMENT */}
                 {step === 2 && (
                     <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
-                        <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-xl border border-gray-100">
-                            <div className="h-20 w-20 rounded-lg overflow-hidden bg-white border border-gray-200 shrink-0">
+                        <div className="flex items-center gap-4 bg-secondary/50 p-4 rounded-xl border border-border">
+                            <div className="h-20 w-20 rounded-lg overflow-hidden bg-background border border-border shrink-0">
                                 <img src={product.image_url} alt={product.name} className="h-full w-full object-cover" />
                             </div>
                             <div className="flex-1 min-w-0">
-                                <h4 className="font-semibold text-gray-900 truncate">{product.name}</h4>
-                                <p className="text-sm text-gray-500 mt-1">Quantity: {quantity}</p>
-                                <p className="text-sm font-medium text-gray-900 mt-1">₹{itemTotal}</p>
+                                <h4 className="font-semibold text-foreground truncate">{product.name}</h4>
+                                <p className="text-sm text-muted-foreground mt-1">Quantity: {quantity}</p>
+                                <p className="text-sm font-medium text-foreground mt-1">₹{itemTotal}</p>
                             </div>
                         </div>
 
                         {/* Price Breakdown */}
-                        <div className="space-y-3 pb-4 border-b border-gray-100">
-                            <div className="flex justify-between text-sm text-gray-600">
+                        <div className="space-y-3 pb-4 border-b border-border">
+                            <div className="flex justify-between text-sm text-muted-foreground">
                                 <span>Item Total</span>
                                 <span>₹{itemTotal}</span>
                             </div>
-                            <div className="flex justify-between text-sm text-gray-600">
+                            <div className="flex justify-between text-sm text-muted-foreground">
                                 <span>Delivery Fee</span>
-                                <span className={deliveryFee === 0 ? "text-green-600 font-medium" : "text-gray-900"}>
+                                <span className={deliveryFee === 0 ? "text-emerald-600 font-medium" : "text-foreground"}>
                                     {deliveryFee === 0 ? "Free" : `₹${deliveryFee}`}
                                 </span>
                             </div>
-                            <div className="flex justify-between text-base font-bold text-gray-900 pt-2 border-t border-dashed border-gray-200">
+                            <div className="flex justify-between text-base font-bold text-foreground pt-2 border-t border-dashed border-border">
                                 <span>Grand Total</span>
                                 <span>₹{grandTotal}</span>
                             </div>
@@ -464,7 +464,7 @@ export function CheckoutModal({ isOpen, onClose, product, quantity, onSuccess }:
 
                         {/* Payment Options */}
                         <div className="space-y-3">
-                            <h3 className="text-sm font-semibold text-gray-900">Payment Method</h3>
+                            <h3 className="text-sm font-semibold text-foreground">Payment Method</h3>
                             <label className="flex items-center justify-between p-4 rounded-xl border-2 border-primary bg-primary/5 cursor-pointer">
                                 <div className="flex items-center gap-3">
                                     <input
@@ -472,16 +472,16 @@ export function CheckoutModal({ isOpen, onClose, product, quantity, onSuccess }:
                                         name="payment"
                                         checked={paymentMethod === 'cod'}
                                         onChange={() => setPaymentMethod('cod')}
-                                        className="h-4 w-4 text-primary border-gray-300 focus:ring-primary"
+                                        className="h-4 w-4 text-primary border-border focus:ring-primary"
                                     />
-                                    <span className="font-medium text-gray-900">Cash on Delivery (COD)</span>
+                                    <span className="font-medium text-foreground">Cash on Delivery (COD)</span>
                                 </div>
-                                <span className="text-xs font-semibold bg-white text-gray-900 px-2 py-1 rounded border border-gray-200">
+                                <span className="text-xs font-semibold bg-background text-foreground px-2 py-1 rounded border border-border">
                                     Cash
                                 </span>
                             </label>
-                            <div className="rounded-md bg-yellow-50 p-3">
-                                <p className="text-xs text-yellow-800">
+                            <div className="rounded-md bg-amber-50 dark:bg-amber-900/20 p-3">
+                                <p className="text-xs text-amber-800 dark:text-amber-300">
                                     Pay securely with cash when your order is delivered.
                                 </p>
                             </div>

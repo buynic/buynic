@@ -47,8 +47,10 @@
 .dark {
   --background: #0c0a09;
   /* stone-950 */
-  --foreground: #fafaf9;
-  --primary: #fafaf9;
+  --foreground: #d6d3d1;
+  /* stone-300 */
+  --primary: #e7e5e4;
+  /* stone-200 */
   --primary-foreground: #1c1917;
   --secondary: #292524;
   /* stone-800 */
