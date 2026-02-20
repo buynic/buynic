@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react"
+import Link from "next/link"
 import { supabase } from "@/lib/supabase"
 // import { User } from "@supabase/supabase-js" // Remove unused import
 import { Check, Clock, Package, Truck, Star, Trash2 } from "lucide-react" // Added Trash2
@@ -217,10 +218,10 @@ export default function OrdersPage() {
   if (loading) {
     // ...
     return (
-      <div className="min-h-screen bg-slate-50 p-6 md:p-10 max-w-4xl mx-auto space-y-6">
-        <div className="h-10 bg-gray-200 rounded w-1/3 animate-pulse"></div>
+      <div className="min-h-screen bg-background p-6 md:p-10 max-w-4xl mx-auto space-y-6">
+        <div className="h-10 bg-secondary rounded w-1/3 animate-pulse"></div>
         {[1, 2].map(i => (
-          <div key={i} className="bg-white p-6 rounded-xl h-40 animate-pulse"></div>
+          <div key={i} className="bg-card border border-border p-6 rounded-xl h-40 animate-pulse"></div>
         ))}
       </div>
     )
@@ -251,11 +252,13 @@ export default function OrdersPage() {
                   <div className="p-6 sm:p-8">
                     <div className="flex flex-col sm:flex-row gap-6">
                       <div className="flex-shrink-0">
-                        <img
-                          src={order.products?.image_url || "https://via.placeholder.com/150"}
-                          alt={order.products?.name}
-                          className="h-24 w-24 rounded-lg object-cover border border-border"
-                        />
+                        <Link href={`/product/${order.product_id}`}>
+                          <img
+                            src={order.products?.image_url || "https://via.placeholder.com/150"}
+                            alt={order.products?.name}
+                            className="h-24 w-24 rounded-lg object-cover border border-border hover:opacity-80 transition-opacity"
+                          />
+                        </Link>
                       </div>
                       <div className="flex-1">
                         <div className="flex justify-between items-start">
