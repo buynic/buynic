@@ -467,7 +467,7 @@ export default function AdminPage() {
 
   const predefinedCategories = ["Electronics", "Fashion", "Home", "Beauty", "Sports"]
 
-  if (loading) return <div className="p-10 flex justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div></div>
+  if (loading) return <div className="p-10 flex justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-foreground"></div></div>
 
   const handleAddReview = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -518,11 +518,11 @@ export default function AdminPage() {
     })
 
   return (
-    <main className="min-h-screen bg-slate-50/50 p-6 md:p-10">
+    <main className="min-h-screen bg-background p-6 md:p-10">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900">Admin Dashboard</h1>
+            <h1 className="text-3xl font-bold tracking-tight text-foreground">Admin Dashboard</h1>
             <p className="text-muted-foreground">Manage orders and products</p>
           </div>
           <div className="flex gap-3">
@@ -539,13 +539,13 @@ export default function AdminPage() {
           {stats.map((stat) => {
             const Icon = stat.icon
             return (
-              <div key={stat.name} className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex items-center">
+              <div key={stat.name} className="bg-card p-6 rounded-xl border border-border shadow-sm flex items-center">
                 <div className={cn("p-3 rounded-lg mr-4", stat.bg)}>
                   <Icon className={cn("h-6 w-6", stat.color)} />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-500">{stat.name}</p>
-                  <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
+                  <p className="text-sm font-medium text-muted-foreground">{stat.name}</p>
+                  <p className="text-2xl font-bold text-foreground">{stat.value}</p>
                 </div>
               </div>
             )
@@ -553,12 +553,12 @@ export default function AdminPage() {
         </div>
 
         {view === 'orders' ? (
-          <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-            <div className="px-6 py-4 border-b border-gray-200 bg-gray-50/50 flex flex-col sm:flex-row justify-between items-center gap-4">
-              <h2 className="text-lg font-semibold text-gray-900">Recent Orders</h2>
+          <div className="bg-card rounded-xl border border-border shadow-sm overflow-hidden">
+            <div className="px-6 py-4 border-b border-border bg-secondary/50 flex flex-col sm:flex-row justify-between items-center gap-4">
+              <h2 className="text-lg font-semibold text-foreground">Recent Orders</h2>
               <div className="flex gap-2">
                 <select
-                  className="text-sm border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring-primary bg-white py-1.5 pl-3 pr-8"
+                  className="text-sm border-border rounded-md shadow-sm focus:border-primary focus:ring-primary bg-background text-foreground py-1.5 pl-3 pr-8"
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
                 >
@@ -569,7 +569,7 @@ export default function AdminPage() {
                   <option value="delivered">Delivered</option>
                 </select>
                 <select
-                  className="text-sm border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring-primary bg-white py-1.5 pl-3 pr-8"
+                  className="text-sm border-border rounded-md shadow-sm focus:border-primary focus:ring-primary bg-background text-foreground py-1.5 pl-3 pr-8"
                   value={sortOrder}
                   onChange={(e) => setSortOrder(e.target.value as 'newest' | 'oldest')}
                 >
@@ -578,26 +578,26 @@ export default function AdminPage() {
                 </select>
               </div>
             </div>
-            <div className="divide-y divide-gray-200">
+            <div className="divide-y divide-border">
               {filteredOrders.map((order) => {
                 const total = order.total_price || ((order.products?.sale_price || 0) * order.quantity)
                 return (
-                  <div key={order.id} className="p-6 flex flex-col gap-4 hover:bg-gray-50 transition">
+                  <div key={order.id} className="p-6 flex flex-col gap-4 hover:bg-secondary/50 transition">
                     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
                       <div className="flex-shrink-0">
                         <img
                           src={order.products?.image_url || "https://via.placeholder.com/100"}
                           alt={order.products?.name}
-                          className="h-16 w-16 object-cover rounded-md border border-gray-200"
+                          className="h-16 w-16 object-cover rounded-md border border-border"
                         />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex justify-between">
                           <p className="text-sm font-medium text-purple-600 truncate">Order #{order.id.slice(0, 8)}</p>
-                          <p className="text-sm text-gray-500">{new Date(order.created_at).toLocaleDateString()}</p>
+                          <p className="text-sm text-muted-foreground">{new Date(order.created_at).toLocaleDateString()}</p>
                         </div>
-                        <h3 className="text-base font-semibold text-gray-900 mt-1">{order.products?.name}</h3>
-                        <div className="mt-1 flex items-center gap-4 text-sm text-gray-500">
+                        <h3 className="text-base font-semibold text-foreground mt-1">{order.products?.name}</h3>
+                        <div className="mt-1 flex items-center gap-4 text-sm text-muted-foreground">
                           <span>Qty: {order.quantity}</span>
                           <span>Total: ₹{total}</span>
                           <span>{order.shipping_name && `• ${order.shipping_name}`}</span>
@@ -610,7 +610,7 @@ export default function AdminPage() {
                         <select
                           value={order.status}
                           onChange={(e) => updateOrderStatus(order, e.target.value)}
-                          className="text-sm border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-white py-1 pl-2 pr-7"
+                          className="text-sm border-border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-background text-foreground py-1 pl-2 pr-7"
                         >
                           <option value="pending">Pending</option>
                           <option value="ordered">Ordered</option>
@@ -622,8 +622,8 @@ export default function AdminPage() {
                     </div>
                     {/* Expanded Address Details */}
                     {order.shipping_address && (
-                      <div className="mt-2 pt-3 border-t border-gray-100 text-sm text-gray-600 bg-gray-50/50 p-3 rounded-md">
-                        <p className="font-semibold text-gray-900 mb-1 flex items-center gap-2"><Truck className="h-3 w-3" /> Delivery Details:</p>
+                      <div className="mt-2 pt-3 border-t border-border text-sm text-muted-foreground bg-secondary/30 p-3 rounded-md">
+                        <p className="font-semibold text-foreground mb-1 flex items-center gap-2"><Truck className="h-3 w-3" /> Delivery Details:</p>
                         <p>{order.shipping_name} | {order.shipping_phone}</p>
                         <p>{order.shipping_address}, {order.shipping_city}, {order.shipping_state} - {order.shipping_pincode}</p>
                       </div>
@@ -631,33 +631,33 @@ export default function AdminPage() {
                   </div>
                 )
               })}
-              {filteredOrders.length === 0 && <div className="p-10 text-center text-gray-500">No orders found.</div>}
+              {filteredOrders.length === 0 && <div className="p-10 text-center text-muted-foreground">No orders found.</div>}
             </div>
           </div>
         ) : (
-          <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-            <div className="px-6 py-4 border-b border-gray-200 bg-gray-50/50">
-              <h2 className="text-lg font-semibold text-gray-900">Products Inventory</h2>
+          <div className="bg-card rounded-xl border border-border shadow-sm overflow-hidden">
+            <div className="px-6 py-4 border-b border-border bg-secondary/50">
+              <h2 className="text-lg font-semibold text-foreground">Products Inventory</h2>
             </div>
-            <div className="divide-y divide-gray-200">
+            <div className="divide-y divide-border">
               {products.map((product) => (
-                <div key={product.product_id} className="p-6 flex items-center justify-between hover:bg-gray-50 transition">
+                <div key={product.product_id} className="p-6 flex items-center justify-between hover:bg-secondary/50 transition">
                   <div className="flex items-center gap-4">
-                    <img src={product.image_url || "https://via.placeholder.com/100"} className="h-16 w-16 object-cover rounded-md border" />
+                    <img src={product.image_url || "https://via.placeholder.com/100"} className="h-16 w-16 object-cover rounded-md border border-border" />
                     <div>
-                      <h3 className="text-base font-semibold text-gray-900">{product.name}</h3>
-                      <p className="text-sm text-gray-500">{product.category} • ₹{product.sale_price}</p>
-                      <p className="text-xs text-gray-400">ID: {product.product_id}</p>
+                      <h3 className="text-base font-semibold text-foreground">{product.name}</h3>
+                      <p className="text-sm text-muted-foreground">{product.category} • ₹{product.sale_price}</p>
+                      <p className="text-xs text-muted-foreground">ID: {product.product_id}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <Button variant="ghost" size="icon" onClick={() => { setCurrentProduct(product); setIsAddReviewOpen(true); }}><TrendingUp className="h-4 w-4 text-yellow-500" /></Button>
                     <Button variant="ghost" size="icon" onClick={() => openEditModal(product)}><Edit className="h-4 w-4" /></Button>
-                    <Button variant="ghost" size="icon" className="text-red-500 hover:text-red-600" onClick={() => handleDeleteProductClick(product.product_id)}><Trash2 className="h-4 w-4" /></Button>
+                    <Button variant="ghost" size="icon" className="text-red-500 hover:text-red-600 dark:hover:text-red-400" onClick={() => handleDeleteProductClick(product.product_id)}><Trash2 className="h-4 w-4" /></Button>
                   </div>
                 </div>
               ))}
-              {products.length === 0 && <div className="p-10 text-center text-gray-500">No products found.</div>}
+              {products.length === 0 && <div className="p-10 text-center text-muted-foreground">No products found.</div>}
             </div>
           </div>
         )}
@@ -672,7 +672,7 @@ export default function AdminPage() {
         className="sm:max-w-md"
       >
         <div className="py-2">
-          <p className="text-gray-600 mb-6">
+          <p className="text-muted-foreground mb-6">
             Are you sure you want to <strong>CANCEL</strong> this order?
             <br />
             This action will notify the customer immediately and cannot be undone from the dashboard.
@@ -835,7 +835,7 @@ export default function AdminPage() {
 
           {/* New Fields for Seeding - visible only on ADD */}
           {!currentProduct && (
-            <div className="bg-gray-50 p-4 rounded-md space-y-4 border border-gray-200">
+            <div className="bg-secondary/50 p-4 rounded-md space-y-4 border border-border">
               <h4 className="font-semibold text-sm">Rating Seeding (Optional)</h4>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -897,7 +897,7 @@ export default function AdminPage() {
         title="Delete Product"
       >
         <div className="py-4 space-y-4">
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             Are you sure you want to delete this product? This action cannot be undone.
           </p>
           <div className="flex justify-end gap-3 pt-2">
@@ -920,10 +920,10 @@ export default function AdminPage() {
 
 function statusColor(status: string) {
   switch (status) {
-    case 'pending': return 'bg-yellow-100 text-yellow-800'
-    case 'ordered': return 'bg-blue-100 text-blue-800'
-    case 'shipped': return 'bg-purple-100 text-purple-800'
-    case 'delivered': return 'bg-green-100 text-green-800'
-    default: return 'bg-gray-100 text-gray-800'
+    case 'pending': return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400'
+    case 'ordered': return 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400'
+    case 'shipped': return 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400'
+    case 'delivered': return 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
+    default: return 'bg-gray-100 text-gray-800 dark:bg-gray-800/50 dark:text-gray-400'
   }
 }

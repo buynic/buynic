@@ -76,12 +76,12 @@ export default function OrdersPage() {
   const confirmDeleteOrder = async () => {
     if (!deleteConfirmation.order) return
 
-    const { error } = await supabase.from('orders').update({ status: 'cancelled' }).eq('id', deleteConfirmation.order.id)
+    const { error } = await supabase.from('orders').delete().eq('id', deleteConfirmation.order.id)
 
     if (error) {
       toast.error("Failed to cancel order", { description: error.message })
     } else {
-      toast.success("Order cancelled successfully")
+      toast.success("Order cancelled and removed successfully")
       if (user) fetchOrders(user.id)
     }
     setDeleteConfirmation({ isOpen: false, order: null })
@@ -227,18 +227,18 @@ export default function OrdersPage() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50/50 py-10">
+    <main className="min-h-screen bg-background py-10">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900">My Orders</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">My Orders</h1>
           <p className="text-muted-foreground mt-1">Track and manage your recent purchases</p>
         </div>
 
         {orders.length === 0 ? (
-          <div className="text-center py-20 bg-white rounded-xl border border-gray-100 shadow-sm">
-            <Package className="h-12 w-12 mx-auto text-gray-300 mb-4" />
-            <h3 className="text-lg font-medium text-gray-900">No orders yet</h3>
-            <p className="text-gray-500 mt-1">Start shopping to see your orders here.</p>
+          <div className="text-center py-20 bg-card rounded-xl border border-border shadow-sm">
+            <Package className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+            <h3 className="text-lg font-medium text-foreground">No orders yet</h3>
+            <p className="text-muted-foreground mt-1">Start shopping to see your orders here.</p>
           </div>
         ) : (
           <div className="space-y-8">
@@ -247,22 +247,22 @@ export default function OrdersPage() {
               const price = order.total_price || (order.products?.sale_price * order.quantity) || 0
 
               return (
-                <div key={order.id} className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                <div key={order.id} className="bg-card rounded-xl border border-border shadow-sm overflow-hidden">
                   <div className="p-6 sm:p-8">
                     <div className="flex flex-col sm:flex-row gap-6">
                       <div className="flex-shrink-0">
                         <img
                           src={order.products?.image_url || "https://via.placeholder.com/150"}
                           alt={order.products?.name}
-                          className="h-24 w-24 rounded-lg object-cover border border-gray-100"
+                          className="h-24 w-24 rounded-lg object-cover border border-border"
                         />
                       </div>
                       <div className="flex-1">
                         <div className="flex justify-between items-start">
                           <div>
-                            <h3 className="text-lg font-semibold text-gray-900">{order.products?.name}</h3>
+                            <h3 className="text-lg font-semibold text-foreground">{order.products?.name}</h3>
                             <div className="flex flex-col mt-1">
-                              <p className="text-sm text-gray-500">Ordered on {new Date(order.created_at).toLocaleDateString()}</p>
+                              <p className="text-sm text-muted-foreground">Ordered on {new Date(order.created_at).toLocaleDateString()}</p>
                               {(order.status === 'ordered' || order.status === 'shipped') && (
                                 <p className="text-sm font-medium text-emerald-600 mt-1">
                                   Expected delivery: on or before {new Date(new Date(order.created_at).getTime() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString()}
@@ -273,15 +273,15 @@ export default function OrdersPage() {
 
                           {/* Price & Delete Action */}
                           <div className="flex flex-col items-end gap-2">
-                            <p className="text-lg font-bold text-gray-900">₹{price}</p>
+                            <p className="text-lg font-bold text-foreground">₹{price}</p>
 
                             <button
                               onClick={() => handleCancelOrder(order)}
                               className={cn(
                                 "p-2 rounded-full transition-colors",
                                 order.status === 'pending'
-                                  ? "text-red-500 hover:bg-red-50"
-                                  : "text-gray-300 cursor-not-allowed hover:text-gray-400"
+                                  ? "text-red-500 hover:bg-destructive/10"
+                                  : "text-muted-foreground/30 cursor-not-allowed hover:text-muted-foreground/50"
                               )}
                               title={order.status === 'pending' ? "Cancel Order" : "Cannot cancel this order"}
                             >
@@ -290,15 +290,15 @@ export default function OrdersPage() {
                           </div>
 
                         </div>
-                        <div className="mt-2 text-sm text-gray-600">
-                          Quantity: <span className="font-medium">{order.quantity}</span>
+                        <div className="mt-2 text-sm text-muted-foreground">
+                          Quantity: <span className="font-medium text-foreground">{order.quantity}</span>
                         </div>
                       </div>
                     </div>
 
                     {/* Timeline */}
                     <div className="mt-8 relative">
-                      <div className="absolute top-1/2 left-0 w-full h-1 bg-gray-100 -translate-y-1/2 rounded-full" />
+                      <div className="absolute top-1/2 left-0 w-full h-1 bg-secondary -translate-y-1/2 rounded-full" />
                       <div
                         className="absolute top-1/2 left-0 h-1 bg-primary -translate-y-1/2 rounded-full transition-all duration-500 ease-out"
                         style={{ width: `${((currentStep - 1) / (steps.length - 1)) * 100}%` }}
@@ -311,13 +311,13 @@ export default function OrdersPage() {
                             <div key={step.name} className="flex flex-col items-center group">
                               <div className={cn(
                                 "w-8 h-8 rounded-full flex items-center justify-center z-10 border-2 transition-colors duration-300",
-                                isCompleted ? "bg-primary border-primary text-primary-foreground" : "bg-white border-gray-200 text-gray-400"
+                                isCompleted ? "bg-primary border-primary text-primary-foreground" : "bg-background border-border text-muted-foreground"
                               )}>
                                 <Icon className="h-4 w-4" />
                               </div>
                               <span className={cn(
                                 "text-xs mt-2 font-medium transition-colors duration-300 absolute -bottom-6 w-max",
-                                isCompleted ? "text-primary" : "text-gray-400"
+                                isCompleted ? "text-primary dark:text-foreground" : "text-muted-foreground"
                               )}>
                                 {step.name}
                               </span>
@@ -328,21 +328,21 @@ export default function OrdersPage() {
                     </div>
                     {/* Review Button for Delivered Orders */}
                     {order.status === 'delivered' && (
-                      <div className="mt-4 pt-4 border-t border-gray-100 flex justify-end">
+                      <div className="mt-4 pt-4 border-t border-border flex justify-end">
                         <Button size="sm" variant="outline" onClick={() => openReviewModal(order)}>
                           <Star className="h-4 w-4 mr-2" /> Rate & Review Product
                         </Button>
                       </div>
                     )}
                   </div>
-                  <div className="bg-gray-50 px-6 py-3 border-t border-gray-100 flex flex-col gap-2">
+                  <div className="bg-secondary/40 px-6 py-3 border-t border-border flex flex-col gap-2">
                     <div className="flex justify-between items-center">
-                      <span className="text-xs font-mono text-gray-400">ID: {order.id}</span>
-                      <span className="text-sm font-medium text-gray-900 capitalize">Status: {order.status}</span>
+                      <span className="text-xs font-mono text-muted-foreground">ID: {order.id}</span>
+                      <span className="text-sm font-medium text-foreground capitalize">Status: {order.status}</span>
                     </div>
                     {order.status === 'pending' && (
-                      <p className="text-xs text-gray-500 mt-1">
-                        <span className="font-medium text-gray-900">Note:</span> Our executive will confirm your order via call before it moves to the <span className="font-medium">Processing</span> stage.
+                      <p className="text-xs text-muted-foreground mt-1">
+                        <span className="font-medium text-foreground">Note:</span> Our executive will confirm your order via call before it moves to the <span className="font-medium">Processing</span> stage.
                       </p>
                     )}
                   </div>

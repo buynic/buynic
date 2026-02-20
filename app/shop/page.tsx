@@ -102,11 +102,11 @@ function ShopContent() {
     }
 
     return (
-        <div className="bg-slate-50 min-h-screen py-10">
+        <div className="bg-background min-h-screen py-10">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
                     <div>
-                        <h1 className="text-3xl font-bold tracking-tight text-gray-900">Shop</h1>
+                        <h1 className="text-3xl font-bold tracking-tight text-foreground">Shop</h1>
                         <p className="text-muted-foreground mt-1">Explore our latest collection</p>
                     </div>
 
@@ -154,9 +154,9 @@ function ShopContent() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         {[...Array(8)].map((_, i) => (
                             <div key={i} className="animate-pulse">
-                                <div className="bg-gray-200 aspect-square rounded-lg mb-4"></div>
-                                <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-                                <div className="h-4 bg-gray-200 rounded w-1/4"></div>
+                                <div className="bg-secondary aspect-square rounded-lg mb-4"></div>
+                                <div className="h-4 bg-secondary rounded w-3/4 mb-2"></div>
+                                <div className="h-4 bg-secondary rounded w-1/4"></div>
                             </div>
                         ))}
                     </div>
@@ -168,7 +168,7 @@ function ShopContent() {
                     </div>
                 ) : (
                     <div className="text-center py-20">
-                        <h3 className="text-lg font-semibold text-gray-900">No products found</h3>
+                        <h3 className="text-lg font-semibold text-foreground">No products found</h3>
                         <p className="text-muted-foreground mt-2">Try adjusting your search or filters.</p>
                         <Button
                             variant="link"

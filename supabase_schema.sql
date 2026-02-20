@@ -91,9 +91,13 @@ CREATE POLICY "Users view own orders" ON orders FOR SELECT TO authenticated
 USING (auth.uid() = user_id);
 CREATE POLICY "Users create own orders" ON orders FOR INSERT TO authenticated 
 WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can delete own orders" ON orders FOR DELETE TO authenticated
+USING (auth.uid() = user_id);
 CREATE POLICY "Admin view all orders" ON orders FOR SELECT TO authenticated 
 USING (auth.jwt() ->> 'email' = 'buynic.shop@gmail.com');
 CREATE POLICY "Admin update all orders" ON orders FOR UPDATE TO authenticated 
+USING (auth.jwt() ->> 'email' = 'buynic.shop@gmail.com');
+CREATE POLICY "Admin delete orders" ON orders FOR DELETE TO authenticated
 USING (auth.jwt() ->> 'email' = 'buynic.shop@gmail.com');
 
 -- Reviews Policies

@@ -22,7 +22,7 @@ interface ProductCardProps {
 export function ProductCard({ product, className }: ProductCardProps) {
     return (
         <div className={cn("group relative", className)}>
-            <div className="aspect-square overflow-hidden rounded-lg bg-gray-100 relative">
+            <div className="aspect-square overflow-hidden rounded-lg bg-secondary relative">
                 <Link href={`/product/${product.product_id}`}>
                     <img
                         src={product.image_url || "https://via.placeholder.com/400x400?text=Product"}
@@ -40,17 +40,17 @@ export function ProductCard({ product, className }: ProductCardProps) {
             </div>
             <div className="mt-4 flex flex-col items-center text-center lg:flex-row lg:justify-between lg:items-start lg:text-left">
                 <div>
-                    <h3 className="text-sm font-medium text-gray-900">
+                    <h3 className="text-sm font-medium text-foreground">
                         <Link href={`/product/${product.product_id}`}>
                             <span aria-hidden="true" className="absolute inset-0" />
                             {product.name}
                         </Link>
                     </h3>
                     {product.category && (
-                        <p className="mt-1 text-sm text-gray-500">{product.category}</p>
+                        <p className="mt-1 text-sm text-muted-foreground">{product.category}</p>
                     )}
                 </div>
-                <p className="text-sm font-medium text-gray-900 mt-2 lg:mt-0">₹{product.sale_price}</p>
+                <p className="text-sm font-medium text-foreground mt-2 lg:mt-0">₹{product.sale_price}</p>
             </div>
         </div>
     )

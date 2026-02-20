@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/Button"
 import { Modal } from "@/components/ui/Modal"
 import { cn } from "@/lib/utils"
 import { PRIVACY_POLICY, TERMS_OF_SERVICE } from "@/lib/legalContent"
+import { ThemeToggle } from "@/components/ThemeToggle"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false) // Mobile menu
@@ -165,8 +166,9 @@ export default function Navbar() {
               </form>
             </div>
 
-            {/* Auth Buttons */}
-            <div className="hidden md:block">
+            {/* Actions (Toggle & Auth) */}
+            <div className="hidden md:flex items-center gap-4">
+              <ThemeToggle />
               {user ? (
                 <div className="flex items-center gap-4">
                   <div className="text-sm text-muted-foreground">
@@ -184,8 +186,9 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* Mobile menu button */}
-            <div className="-mr-2 flex md:hidden">
+            {/* Mobile menu button & Mobile Theme Toggle */}
+            <div className="-mr-2 flex md:hidden items-center gap-2">
+              <ThemeToggle />
               <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)}>
                 {isOpen ? <XIcon className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </Button>

@@ -159,12 +159,12 @@ export default function ProductClient({ product: initialProduct, reviews: initia
     const isFastSelling = product.stock_status === 'fast_selling'
 
     return (
-        <div className="bg-white">
-            <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 bg-white">
+        <div className="bg-background">
+            <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 bg-background">
                 <div className="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
                     {/* Image gallery */}
                     <div className="flex flex-col-reverse justify-center">
-                        <div className="aspect-square w-full overflow-hidden rounded-lg bg-gray-100 relative group">
+                        <div className="aspect-square w-full overflow-hidden rounded-lg bg-secondary relative group">
                             <img
                                 src={product.image_url || "https://via.placeholder.com/600x600?text=No+Image"}
                                 alt={product.name}
@@ -194,18 +194,18 @@ export default function ProductClient({ product: initialProduct, reviews: initia
                                     {product.category}
                                 </span>
                             )}
-                            <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 leading-tight">
+                            <h1 className="mt-2 text-3xl font-bold tracking-tight text-foreground leading-tight">
                                 {product.name}
                             </h1>
-                            <p className="text-xs text-gray-400 mt-1">Product ID: {product.product_id}</p>
+                            <p className="text-xs text-muted-foreground mt-1">Product ID: {product.product_id}</p>
                         </div>
 
                         <div className="mt-3">
                             <h2 className="sr-only">Product information</h2>
                             <div className="flex items-baseline justify-center lg:justify-start gap-4">
-                                <p className="text-3xl tracking-tight text-gray-900">₹{product.sale_price}</p>
+                                <p className="text-3xl tracking-tight text-foreground">₹{product.sale_price}</p>
                                 {product.actual_price && product.actual_price > product.sale_price && (
-                                    <p className="text-lg text-gray-500 line-through">₹{product.actual_price}</p>
+                                    <p className="text-lg text-muted-foreground line-through">₹{product.actual_price}</p>
                                 )}
                             </div>
                         </div>
@@ -227,28 +227,28 @@ export default function ProductClient({ product: initialProduct, reviews: initia
                                 </div>
                                 <p className="sr-only">{product.average_rating} out of 5 stars</p>
                                 <span className="ml-3 text-sm font-medium text-primary hover:text-primary/80">
-                                    {Number(product.average_rating).toFixed(2)} <span className="text-gray-500">({product.total_reviews || 0} reviews)</span>
+                                    {Number(product.average_rating).toFixed(2)} <span className="text-muted-foreground">({product.total_reviews || 0} reviews)</span>
                                 </span>
                             </div>
                         </div>
 
                         <div className="mt-6">
                             <h3 className="sr-only">Description</h3>
-                            <div className="space-y-6 text-base text-gray-700">
+                            <div className="space-y-6 text-base text-muted-foreground">
                                 <p>{product.description || "Experience premium quality with this exceptional product, designed to enhance your lifestyle with style and functionality."}</p>
                             </div>
                         </div>
 
-                        <div className="mt-10 border-t border-gray-200 pt-10">
+                        <div className="mt-10 border-t border-border pt-10">
                             {isOutOfStock ? (
-                                <div className="rounded-md bg-red-50 p-4 mb-6">
+                                <div className="rounded-md bg-destructive/10 p-4 mb-6">
                                     <div className="flex justify-center lg:justify-start">
                                         <div className="flex-shrink-0">
-                                            <AlertCircle className="h-5 w-5 text-red-400" aria-hidden="true" />
+                                            <AlertCircle className="h-5 w-5 text-destructive" aria-hidden="true" />
                                         </div>
                                         <div className="ml-3 text-left">
-                                            <h3 className="text-sm font-medium text-red-800">Out of Stock</h3>
-                                            <div className="mt-2 text-sm text-red-700">
+                                            <h3 className="text-sm font-medium text-destructive">Out of Stock</h3>
+                                            <div className="mt-2 text-sm text-destructive/80">
                                                 <p>This item is currently unavailable. Please check back later.</p>
                                             </div>
                                         </div>
@@ -256,10 +256,10 @@ export default function ProductClient({ product: initialProduct, reviews: initia
                                 </div>
                             ) : (
                                 <div className="flex items-center justify-between mb-6 max-w-xs mx-auto lg:max-w-none lg:mx-0">
-                                    <span className="text-sm font-medium text-gray-900">Quantity</span>
-                                    <div className="flex items-center border border-gray-300 rounded-md">
+                                    <span className="text-sm font-medium text-foreground">Quantity</span>
+                                    <div className="flex items-center border border-border rounded-md">
                                         <button
-                                            className="p-2 hover:bg-gray-100 transition disabled:opacity-50"
+                                            className="p-2 hover:bg-secondary transition disabled:opacity-50"
                                             onClick={() => setQuantity(Math.max(1, quantity - 1))}
                                             disabled={quantity <= 1}
                                         >
@@ -267,7 +267,7 @@ export default function ProductClient({ product: initialProduct, reviews: initia
                                         </button>
                                         <span className="w-12 text-center text-sm font-medium">{quantity}</span>
                                         <button
-                                            className="p-2 hover:bg-gray-100 transition disabled:opacity-50"
+                                            className="p-2 hover:bg-secondary transition disabled:opacity-50"
                                             onClick={() => setQuantity(Math.min(10, quantity + 1))}
                                             disabled={quantity >= 10}
                                         >
@@ -292,13 +292,13 @@ export default function ProductClient({ product: initialProduct, reviews: initia
 
                         <section aria-labelledby="details-heading" className="mt-12">
                             <div className="grid grid-cols-1 gap-y-4 pt-4">
-                                <div className="flex items-center justify-center lg:justify-start gap-3 text-sm text-gray-500">
-                                    <Truck className="h-5 w-5 text-gray-400" />
+                                <div className="flex items-center justify-center lg:justify-start gap-3 text-sm text-muted-foreground">
+                                    <Truck className="h-5 w-5 text-muted-foreground/70" />
                                     <span>Free shipping on all orders over ₹199</span>
                                 </div>
                                 {product.return_available && (
-                                    <div className="flex items-center justify-center lg:justify-start gap-3 text-sm text-gray-500">
-                                        <RefreshCw className="h-5 w-5 text-gray-400" />
+                                    <div className="flex items-center justify-center lg:justify-start gap-3 text-sm text-muted-foreground">
+                                        <RefreshCw className="h-5 w-5 text-muted-foreground/70" />
                                         <span>Return available within 7 days</span>
                                     </div>
                                 )}
@@ -308,21 +308,21 @@ export default function ProductClient({ product: initialProduct, reviews: initia
                 </div>
 
                 {/* Reviews Section */}
-                <div className="mt-16 border-t border-gray-200 pt-10">
-                    <h2 className="text-2xl font-bold tracking-tight text-gray-900 mb-6 text-center lg:text-left">Customer Reviews</h2>
+                <div className="mt-16 border-t border-border pt-10">
+                    <h2 className="text-2xl font-bold tracking-tight text-foreground mb-6 text-center lg:text-left">Customer Reviews</h2>
                     {reviews.length === 0 ? (
-                        <p className="text-gray-500 text-center lg:text-left">No reviews yet. Be the first to review this product!</p>
+                        <p className="text-muted-foreground text-center lg:text-left">No reviews yet. Be the first to review this product!</p>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             {reviews.map((review) => (
-                                <div key={review.id} className="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                                <div key={review.id} className="bg-secondary/50 p-6 rounded-lg border border-border">
                                     <div className="flex items-center justify-between mb-4">
                                         <div className="flex items-center gap-2">
-                                            <div className="bg-gray-200 rounded-full p-2">
-                                                <span className="font-bold text-gray-600 px-1">{review.reviewer_name?.charAt(0) || 'U'}</span>
+                                            <div className="bg-secondary rounded-full p-2">
+                                                <span className="font-bold text-foreground px-1">{review.reviewer_name?.charAt(0) || 'U'}</span>
                                             </div>
                                             <div>
-                                                <p className="font-semibold text-gray-900">{review.reviewer_name || 'Anonymous'}</p>
+                                                <p className="font-semibold text-foreground">{review.reviewer_name || 'Anonymous'}</p>
                                                 {review.verified_purchase && (
                                                     <span className="flex items-center text-xs text-green-600 gap-1">
                                                         <ShieldCheck className="h-3 w-3" /> Verified Purchase
@@ -330,7 +330,7 @@ export default function ProductClient({ product: initialProduct, reviews: initia
                                                 )}
                                             </div>
                                         </div>
-                                        <span className="text-xs text-gray-400">{new Date(review.created_at).toLocaleDateString()}</span>
+                                        <span className="text-xs text-muted-foreground">{new Date(review.created_at).toLocaleDateString()}</span>
                                     </div>
                                     <div className="flex items-center mb-2">
                                         {[1, 2, 3, 4, 5].map((rating) => (
@@ -343,12 +343,12 @@ export default function ProductClient({ product: initialProduct, reviews: initia
                                             />
                                         ))}
                                     </div>
-                                    <p className="text-gray-700 text-sm mb-4">{review.comment}</p>
+                                    <p className="text-muted-foreground text-sm mb-4">{review.comment}</p>
                                     {review.review_image_url && (
                                         <img
                                             src={review.review_image_url}
                                             alt="Review"
-                                            className="h-24 w-24 object-cover rounded-md border border-gray-200 cursor-pointer hover:opacity-90"
+                                            className="h-24 w-24 object-cover rounded-md border border-border cursor-pointer hover:opacity-90"
                                             onClick={() => window.open(review.review_image_url, '_blank')}
                                         />
                                     )}
